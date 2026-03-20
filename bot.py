@@ -1,8 +1,9 @@
 import requests
 import time
 
-TOKEN = "YAHAN_TOKEN_DALO"
-CHAT_ID = "YAHAN_CHAT_ID_DALO"
+# ✅ YOUR DETAILS (already added)
+TOKEN = "8276519624:AAHCboXuosrJCLcqQi6ZP4f0MT1xY7voPuk"
+CHAT_ID = "741726963"
 API_KEY = "4a3eacedc8fa46448e62978e993c0422"
 
 PAIRS = ["EUR/USD","GBP/USD","USD/JPY","AUD/USD","USD/CAD","EUR/JPY"]
@@ -33,7 +34,10 @@ def strong(data):
 while True:
     sec = int(time.strftime("%S"))
 
+    # 🔥 SNIPER WINDOW
     if sec >= 55:
+
+        # ⛔ duplicate avoid
         if time.time() - last_signal_time < 60:
             time.sleep(1)
             continue
@@ -50,13 +54,18 @@ while True:
             direction = "BUY" if last > prev else "SELL"
 
             score = 0
+
+            # 🔥 double confirmation
             if trend == direction:
                 score += 2
+
+            # ⚡ strong candle
             if strong(d):
                 score += 2
 
+            # 🎯 FINAL CONDITION
             if score >= 4:
-                send(f"💣 SIGNAL\n{pair} {direction}\nEntry: Next Candle")
+                send(f"💣 SNIPER SIGNAL\n{pair} {direction}\nEntry: Next Candle")
                 last_signal_time = time.time()
                 break
 
